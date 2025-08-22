@@ -19,7 +19,7 @@ function openTab(evt, tabName) {
 }
 
 
-// Données de tous les patients, AVEC DES LIENS EXTERNES SPÉCIFIQUES
+// Données de tous les patients
 const patients = [
     {
         id: "patient1",
@@ -42,12 +42,10 @@ const patients = [
             "Nausées présentes depuis 4 heures, sans vomissements.",
             "Absence de transit intestinal depuis 24h (gaz et selles)."
         ],
-        constantes: [
-            "Tension artérielle: 130/80 mmHg (bras gauche, assise)",
-            "Fréquence cardiaque: 95 bpm (régulier)",
-            "Fréquence respiratoire: 18/min",
-            "Saturation O2: 98% (air ambiant)",
-            "Température: 38.5°C (tympanique)"
+        vitalSigns: [
+            { datetime: "22/08/2025 - 10h00", TA: "130/80", FC: "95", FR: "18", SpO2: "98", Temp: "38.5" },
+            { datetime: "22/08/2025 - 12h00", TA: "125/75", FC: "92", FR: "17", SpO2: "99", Temp: "38.1" },
+            { datetime: "22/08/2025 - 14h00", TA: "128/78", FC: "90", FR: "18", SpO2: "98", Temp: "37.9" }
         ],
         antecedents: [
             "Hypertension artérielle (depuis 2010), traitée par un inhibiteur de l'enzyme de conversion.",
@@ -63,11 +61,12 @@ const patients = [
             "Père: Décédé à 65 ans d'un infarctus du myocarde.",
             "Frère: En bonne santé connue."
         ],
-        externalLinks: [
-            { text: "Dossier patient exemple", url: "https://www.canva.com/design/DAGe5oXSIbQ/KKOL4TiKOEVDQ6GX8Q9aDA/edit" },
-            { text: "Interprétation des signes vitaux (HAS)", url: "https://www.has-sante.fr/jcms/c_287413/fr/surveillance-des-signes-vitaux" },
-            { text: "Cas clinique appendicite (externe)", url: "https://www.google.com/search?q=cas+clinique+appendicite" } // Exemple de recherche
-        ]
+        groupageSanguin: {
+            groupeABO: "A",
+            rhesus: "Positif",
+            kell: "Négatif (K-)"
+        },
+        rechercheAnticorps: "Résultats négatifs. Aucune présence d'anticorps irréguliers."
     },
     {
         id: "patient2",
@@ -89,12 +88,10 @@ const patients = [
             "Utilisation de Ventoline (2 bouffées) il y a 30 minutes sans amélioration notable.",
             "Pas de douleur thoracique, ni de fièvre."
         ],
-        constantes: [
-            "Tension artérielle: 120/70 mmHg",
-            "Fréquence cardiaque: 110 bpm",
-            "Fréquence respiratoire: 25/min (polypnée)",
-            "Saturation O2: 90% (air ambiant)",
-            "Température: 37.2°C"
+        vitalSigns: [
+            { datetime: "22/08/2025 - 10h00", TA: "120/70", FC: "110", FR: "25", SpO2: "90", Temp: "37.2" },
+            { datetime: "22/08/2025 - 10h30", TA: "125/75", FC: "105", FR: "22", SpO2: "92", Temp: "37.1" },
+            { datetime: "22/08/2025 - 11h00", TA: "120/70", FC: "95", FR: "20", SpO2: "95", Temp: "37.0" }
         ],
         antecedents: [
             "Asthme bronchique (diagnostiqué à l'enfance), suivi régulièrement.",
@@ -108,11 +105,12 @@ const patients = [
             "Mère: Asthme.",
             "Père: En bonne santé connue."
         ],
-        externalLinks: [
-            { text: "Comprendre l'asthme (Ameli.fr)", url: "https://www.ameli.fr/assure/sante/themes/asthme/comprendre-asthme" },
-            { text: "Prise en charge de la crise d'asthme (Manuel MSD)", url: "https://www.msdmanuals.com/fr/accueil/troubles-pulmonaires-et-des-voies-respiratoires/asthme/asthme" },
-            { text: "Vidéos sur l'utilisation des inhalateurs", url: "https://www.youtube.com/results?search_query=utilisation+inhalateur+asthme" } // Exemple YouTube
-        ]
+        groupageSanguin: {
+            groupeABO: "O",
+            rhesus: "Négatif",
+            kell: "Négatif (K-)"
+        },
+        rechercheAnticorps: "Résultats négatifs. Aucune présence d'anticorps irréguliers."
     },
     {
         id: "patient3",
@@ -134,13 +132,10 @@ const patients = [
             "Se plaint d'une faiblesse généralisée et de vertiges persistants.",
             "N'a pas mangé ce matin."
         ],
-        constantes: [
-            "Tension artérielle: 90/60 mmHg (debout)",
-            "Fréquence cardiaque: 55 bpm",
-            "Fréquence respiratoire: 16/min",
-            "Saturation O2: 97% (air ambiant)",
-            "Température: 36.8°C",
-            "Glycémie capillaire: 0.65 g/L"
+        vitalSigns: [
+            { datetime: "22/08/2025 - 08h00", TA: "90/60", FC: "55", FR: "16", SpO2: "97", Temp: "36.8" },
+            { datetime: "22/08/2025 - 10h00", TA: "95/65", FC: "60", FR: "16", SpO2: "98", Temp: "36.9" },
+            { datetime: "22/08/2025 - 12h00", TA: "100/70", FC: "62", FR: "17", SpO2: "98", Temp: "37.0" }
         ],
         antecedents: [
             "Diabète de type 2 (depuis 2000), traité par antidiabétiques oraux.",
@@ -156,11 +151,96 @@ const patients = [
             "Mère: Diabète de type 2.",
             "Père: Insuffisance cardiaque."
         ],
-        externalLinks: [
-            { text: "Fiche sur l'hypoglycémie (Manuel MSD)", url: "https://www.msdmanuals.com/fr/accueil/troubles-hormonaux-et-m%C3%A9taboliques/diab%C3%A8te-sucr%C3%A9-et-troubles-du-m%C3%A9tabolisme-des-glucides/hypoglyc%C3%A9mie" },
-            { text: "Comprendre l'insuffisance cardiaque (Fédération Française de Cardiologie)", url: "https://www.fedecardio.org/sites/default/files/federation_francaise_cardiologie_insuffisance_cardiaque.pdf" },
-            { text: "Gestion des chutes chez la personne âgée (HAS)", url: "https://www.has-sante.fr/jcms/c_287413/fr/prevention-des-chutes-chez-la-personne-agee" }
-        ]
+        groupageSanguin: {
+            groupeABO: "AB",
+            rhesus: "Positif",
+            kell: "Positif (K+)"
+        },
+        rechercheAnticorps: "Présence d'anticorps anti-Kell. À investiguer."
+    },
+    {
+        id: "patient4",
+        nom: "DUBOIS",
+        prenom: "Luc",
+        dob: "10/04/1985",
+        age: "40 ans",
+        sexe: "Masculin",
+        allergies: "Aucune allergie connue.",
+        contactUrgence: {
+            nom: "Catherine DUBOIS",
+            lien: "Conjointe",
+            tel: "06 23 45 67 89"
+        },
+        motifConsultation: "Douleur thoracique et malaise." ,
+        anamnese: [
+            "Douleur thoracique rétro-sternale apparue il y a 1 heure, d'intensité 8/10, oppressive.",
+            "Irradie vers le bras gauche et la mâchoire.",
+            "Sensation de malaise, sueurs froides et essoufflement.",
+            "N'a pas pris de traitement spécifique."
+        ],
+        vitalSigns: [
+            { datetime: "22/08/2025 - 10h30", TA: "160/95", FC: "120", FR: "22", SpO2: "96", Temp: "36.5" },
+            { datetime: "22/08/2025 - 10h45", TA: "155/90", FC: "115", FR: "20", SpO2: "97", Temp: "36.6" }
+        ],
+        antecedents: [
+            "Hypertension artérielle (depuis 2018).",
+            "Tabagisme (1 paquet par jour depuis 20 ans)."
+        ],
+        traitements: [
+            "Aucun traitement en cours."
+        ],
+        antecedentsFamiliaux: [
+            "Père: Infarctus du myocarde à 55 ans."
+        ],
+        groupageSanguin: {
+            groupeABO: "B",
+            rhesus: "Positif",
+            kell: "Négatif (K-)"
+        },
+        rechercheAnticorps: "Résultats négatifs. Aucune présence d'anticorps irréguliers."
+    },
+    {
+        id: "patient5",
+        nom: "FOURNIER",
+        prenom: "Jeanne",
+        dob: "25/11/1952",
+        age: "72 ans",
+        sexe: "Féminin",
+        allergies: "Aucune allergie connue.",
+        contactUrgence: {
+            nom: "Julien FOURNIER",
+            lien: "Fils",
+            tel: "06 54 32 10 98"
+        },
+        motifConsultation: "Chute de sa hauteur et suspicion de fracture.",
+        anamnese: [
+            "Chute à son domicile en se levant d'une chaise. A glissé et est tombée sur le côté droit.",
+            "Douleur vive au niveau de la hanche droite, 9/10 sur l'échelle numérique.",
+            "Impossibilité de se relever et de s'appuyer sur sa jambe droite.",
+            "Pas de perte de connaissance."
+        ],
+        vitalSigns: [
+            { datetime: "22/08/2025 - 11h00", TA: "140/85", FC: "80", FR: "18", SpO2: "98", Temp: "36.7" },
+            { datetime: "22/08/2025 - 11h30", TA: "135/80", FC: "85", FR: "18", SpO2: "98", Temp: "36.8" }
+        ],
+        antecedents: [
+            "Ostéoporose diagnostiquée en 2010, avec traitement par bisphosphonates.",
+            "Arthrose du genou gauche.",
+            "Porte-prothèse de hanche gauche."
+        ],
+        traitements: [
+            "Alendronate 70mg (1x/semaine)",
+            "Paracétamol 1000mg (2x/jour)"
+        ],
+        antecedentsFamiliaux: [
+            "Mère: Fracture du col du fémur."
+        ],
+        groupageSanguin: {
+            groupeABO: "A",
+            rhesus: "Positif",
+            kell: "Positif (K+)"
+        },
+        rechercheAnticorps: "Présence d'anticorps anti-Jka."
     }
 ];
 
@@ -199,18 +279,27 @@ function updatePatientInfo(data) {
     } else {
         anamneseDetails.innerHTML = '<p>Aucune information d\'anamnèse collectée.</p>';
     }
-
-    const constantes = document.getElementById('constantes');
-    constantes.innerHTML = '';
-    if (data.constantes && data.constantes.length > 0) {
-        data.constantes.forEach(item => {
-            const p = document.createElement('p');
-            p.textContent = item;
-            constantes.appendChild(p);
+    
+    // MISE À JOUR DE L'ONGLET "SURVEILLANCE"
+    const vitalSignsTableBody = document.getElementById('vitalSignsTableBody');
+    vitalSignsTableBody.innerHTML = ''; // Vide le tableau existant
+    if (data.vitalSigns && data.vitalSigns.length > 0) {
+        data.vitalSigns.forEach(sign => {
+            const tr = document.createElement('tr');
+            tr.innerHTML = `
+                <td>${sign.datetime}</td>
+                <td>${sign.TA}</td>
+                <td>${sign.FC}</td>
+                <td>${sign.FR}</td>
+                <td>${sign.SpO2}</td>
+                <td>${sign.Temp}</td>
+            `;
+            vitalSignsTableBody.appendChild(tr);
         });
     } else {
-        constantes.innerHTML = '<p>Aucune constante vitale enregistrée.</p>';
+        vitalSignsTableBody.innerHTML = '<tr><td colspan="6">Aucune donnée de surveillance disponible.</td></tr>';
     }
+
 
     // Mise à jour des informations de l'onglet "Traitements & Antécédents"
     const antecedentsList = document.getElementById('antecedentsList');
@@ -258,29 +347,12 @@ function updatePatientInfo(data) {
     tabPatientNameElements.forEach(element => {
         element.textContent = `${data.prenom} ${data.nom}`;
     });
-
-    // Mettre à jour les liens externes avec des BOUTONS
-    const externalLinksList = document.getElementById('externalLinksList');
-    externalLinksList.innerHTML = ''; // Vider la liste existante
-
-    if (data.externalLinks && data.externalLinks.length > 0) {
-        data.externalLinks.forEach(link => {
-            const li = document.createElement('li');
-            const button = document.createElement('button'); // Créons un élément <button>
-            
-            button.textContent = `Ouvrir : ${link.text}`; // Le texte du bouton inclura "Ouvrir :" et le texte du lien
-            
-            // Quand on clique sur le bouton, on ouvre l'URL dans un nouvel onglet
-            button.onclick = () => window.open(link.url, '_blank'); 
-            
-            button.setAttribute('rel', 'noopener noreferrer'); 
-
-            li.appendChild(button); // Ajoutons le bouton à l'élément de liste
-            externalLinksList.appendChild(li); // Ajoutons l'élément de liste à la liste principale
-        });
-    } else {
-        externalLinksList.innerHTML = '<li>Aucune ressource complémentaire pour ce patient.</li>';
-    }
+    
+    // MISE À JOUR DU NOUVEL ONGLET "DOSSIER TRANSFUSIONNEL"
+    document.getElementById('groupeABO').textContent = data.groupageSanguin ? data.groupageSanguin.groupeABO : "Non spécifié.";
+    document.getElementById('rhesusSanguin').textContent = data.groupageSanguin ? data.groupageSanguin.rhesus : "Non spécifié.";
+    document.getElementById('kellFactor').textContent = data.groupageSanguin ? data.groupageSanguin.kell : "Non spécifié.";
+    document.getElementById('rechercheAnticorps').textContent = data.rechercheAnticorps || "Non spécifié.";
 }
 
 // Fonction pour sauvegarder les transmissions et diagnoses
