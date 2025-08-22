@@ -219,26 +219,6 @@ button:hover {
     background-color: #218838;
 }
 
-/* External Links Buttons */
-#externalLinksBox button {
-    background-color: #007bff;
-    color: white;
-    padding: 8px 15px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 0.9em;
-    margin-bottom: 8px;
-    width: 100%;
-    display: block;
-    text-align: left;
-    transition: background-color 0.2s ease;
-}
-
-#externalLinksBox button:hover {
-    background-color: #0056b3;
-}
-
 /* Tables */
 table {
     width: 100%;
