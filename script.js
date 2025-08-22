@@ -119,7 +119,7 @@ const patients = [
         ],
         groupageSanguin: {
             groupeABO: "O",
-            rhesus: "Négatif",
+            rhesus: "-1,-2,-3,4,5",
             kell: "Négatif (K-)"
         },
         rechercheAnticorps: "Résultats négatifs. Aucune présence d'anticorps irréguliers."
@@ -217,3 +217,4 @@ const patients = [
         sexe: "Féminin",
         allergies: "Aucune allergie connue.",
         contactUrgence: {
+
