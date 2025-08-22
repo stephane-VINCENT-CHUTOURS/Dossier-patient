@@ -32,6 +32,7 @@
                 <button class="tab-button" onclick="openTab(event, 'Anamnese')">Histoire de la maladie</button>
                 <button class="tab-button" onclick="openTab(event, 'TraitementsAntecedents')">Traitements & Antécédents</button>
                 <button class="tab-button" onclick="openTab(event, 'TransmissionsDiagnoses')">Transmissions & Diagnoses</button>
+                 <button class="tab-button" onclick="openTab(event, 'DossierTransfusionnel')">Dossier transfusionnel</button>
             </div>
 
             <div id="InfosPatient" class="tab-content active">
@@ -100,6 +101,19 @@
                     <textarea id="studentDiagnoses" rows="8" placeholder="Saisissez ici les diagnoses infirmières pertinentes (PES)..."></textarea>
                 </div>
                 <button onclick="saveStudentNotes()">Enregistrer les notes et diagnoses</button>
+                
+            <div id="Dossier transfusionnel" class="tab-content">
+                <h3>Dossier transfusionnel (<span class="tab-patient-name"></span>)</h3>
+                <div class="info-box">
+                    <h4>Carte de groupage sanguin</h4>
+                    <textarea id="studentTransmissions" rows="8" placeholder="Saisissez ici vos transmissions ciblées (D-E-R) ou autres notes..."></textarea>
+                </div>
+                <div class="info-box">
+                    <h4>Résultats RAI</h4>
+                    <textarea id="studentDiagnoses" rows="8" placeholder="Saisissez ici les diagnoses infirmières pertinentes (PES)..."></textarea>
+                </div>
+                <button onclick="saveStudentNotes()">Enregistrer les notes et diagnoses</button>
+            </div>
             </div>
         </main>
     </div>
@@ -110,4 +124,5 @@
 
     <script src="script.js"></script>
 </body>
+
 </html>
