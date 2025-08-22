@@ -90,13 +90,13 @@
     },
     {
         "id": "patient3",
-        "nom": "LEFBEVRE",
+        "nom": "LEFEVRE",
         "prenom": "Sophie",
         "dob": "20/07/1960",
         "sexe": "Féminin",
         "allergies": "Iode (choc anaphylactique)",
         "contactUrgence": {
-            "nom": "Marc LEFBEVRE",
+            "nom": "Marc LEFEVRE",
             "lien": "Fils",
             "tel": "07 01 02 03 04"
         },
