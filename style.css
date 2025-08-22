@@ -204,8 +204,9 @@ textarea {
     text-align: right;
 }
 
+/* Nouveau style pour le bouton "Enregistrer" */
 button {
-    background-color: #CCE5FF;
+    background-color: #0056b3; /* Un bleu plus foncé pour le bouton d'enregistrement */
     color: white;
     padding: 10px 20px;
     border: none;
@@ -216,7 +217,7 @@ button {
 }
 
 button:hover {
-    background-color: #CCE5FF;
+    background-color: #003d7a;
 }
 
 /* Tables */
@@ -246,5 +247,3 @@ tr:nth-child(even) {
 tr:hover {
     background-color: #ddd;
 }
-
-
