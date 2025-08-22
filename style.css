@@ -120,7 +120,7 @@ aside h2 {
     cursor: pointer;
     font-size: 1rem;
     color: #555;
-    border-bottom: 2px solid transparent;
+    border-bottom: 1px solid transparent;
     transition: all 0.3s ease;
 }
 
@@ -245,6 +245,7 @@ tr:nth-child(even) {
 tr:hover {
     background-color: #ddd;
 }
+
 
 
 
