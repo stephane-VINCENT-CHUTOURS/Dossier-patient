@@ -360,3 +360,74 @@ function updatePatientInfo(data) {
     
     // MISE À JOUR DU NOUVEL ONGLET "DOSSIER TRANSFUSIONNEL"
     document.getElementById('groupeABO').textContent = data.groupageSanguin ? data.groupageSanguin.groupeABO : "Non spécifié.";
+    document.getElementById('rhesusSanguin').textContent = data.groupageSanguin ? data.groupageSanguin.rhesus : "Non spécifié.";
+    document.getElementById('kellFactor').textContent = data.groupageSanguin ? data.groupageSanguin.kell : "Non spécifié.";
+    document.getElementById('rechercheAnticorps').textContent = data.rechercheAnticorps || "Non spécifié.";
+}
+
+// Fonction pour sauvegarder les transmissions et diagnoses
+function saveStudentNotes() {
+    const transmissionsText = document.getElementById('studentTransmissions').value;
+    const diagnosesText = document.getElementById('studentDiagnoses').value;
+
+    if (transmissionsText.trim() === "" && diagnosesText.trim() === "") {
+        alert("Veuillez saisir des informations dans les transmissions ou les diagnoses avant d'enregistrer.");
+        return;
+    }
+
+    console.log("--- Enregistrement des notes ---");
+    console.log("Transmissions :", transmissionsText);
+    console.log("Diagnoses infirmières :", diagnosesText);
+    alert("Vos notes et diagnoses ont été enregistrées (voir la console du navigateur) !");
+}
+
+// Fonction pour charger un patient par son ID
+function loadPatient(patientId) {
+    const selectedPatient = patients.find(p => p.id === patientId);
+    if (selectedPatient) {
+        updatePatientInfo(selectedPatient);
+
+        // Désactiver la classe 'active' de tous les éléments de la liste
+        const listItems = document.querySelectorAll('#patientList li');
+        listItems.forEach(item => item.classList.remove('active'));
+
+        // Ajouter la classe 'active' à l'élément de liste du patient sélectionné
+        document.getElementById(`li-${patientId}`).classList.add('active');
+
+        // Active le premier onglet ('InfosPatient') après le chargement du patient
+        // Simule un clic sur le premier bouton pour activer l'onglet visuellement
+        document.querySelector('.tab-button').click();
+    } else {
+        console.error("Patient non trouvé avec l'ID:", patientId);
+    }
+}
+
+// Fonction pour générer la liste des patients dans la sidebar
+function generatePatientList() {
+    const patientListElement = document.getElementById('patientList');
+    patientListElement.innerHTML = ''; // Vider la liste avant de la regénérer
+    patients.forEach(patient => {
+        const listItem = document.createElement('li');
+        listItem.id = `li-${patient.id}`; // Ajout d'un ID pour le ciblage CSS
+        listItem.textContent = `${patient.prenom} ${patient.nom}`;
+        listItem.onclick = () => loadPatient(patient.id); // Ajout de l'événement de clic
+        patientListElement.appendChild(listItem);
+    });
+}
+
+// Fonction pour afficher la date du jour
+function displayCurrentDate() {
+    const dateElement = document.getElementById('currentDate');
+    const today = new Date();
+    const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+    dateElement.textContent = today.toLocaleDateString('fr-FR', options);
+}
+
+
+// Exécute les fonctions d'initialisation au chargement de la page
+// Le script est situé à la fin du corps HTML, donc il s'exécute quand tout est prêt.
+displayCurrentDate();
+generatePatientList();
+if (patients.length > 0) {
+    loadPatient(patients[0].id);
+}
