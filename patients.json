@@ -215,4 +215,47 @@
         },
         "rechercheAnticorps": "Présence d'anticorps anti-Jka."
     }
+        {
+        "id": "patient6",
+        "nom": "PEREZ",
+        "prenom": "Antonio",
+        "dob": "17/03/1981",
+        "sexe": "Masculin",
+        "allergies": "Aucune",
+        "contactUrgence": {
+            "nom": "Mathilde PEREZ",
+            "lien": "Conjoint",
+            "tel": "06 12 34 56 00"
+        },
+        "motifConsultation": "Hémorragie digestive",
+        "anamnese": [
+            "A constaté une importante hémorragie en allant aux toilettes.",
+            "Douleur évaluée à 7/10 sur l'échelle numérique, type crampe intermittente.",
+        ],
+        "vitalSigns": [
+            { "datetime": "22/08/2025 - 10h00", "TA": "100/80", "FC": "95", "FR": "18", "SpO2": "98", "Temp": "38.5" },
+            { "datetime": "22/08/2025 - 12h00", "TA": "106/76", "FC": "98", "FR": "17", "SpO2": "99", "Temp": "38.1" },
+            { "datetime": "22/08/2025 - 14h00", "TA": "104/78", "FC": "88", "FR": "18", "SpO2": "98", "Temp": "37.9" }
+        ],
+        "antecedents": [
+            "Hypertension artérielle (depuis 2010), traitée par un inhibiteur de l'enzyme de conversion.",
+            "Appendicectomie (1990) sans complications.",
+            "Fracture du poignet gauche (2005)."
+        ],
+        "traitements": [
+            "Ramipril 5mg (1x/jour, matin)",
+            "Paracétamol 1000mg (si douleur ou fièvre, max 3x/jour)"
+        ],
+        "antecedentsFamiliaux": [
+            "Mère: Diabète de type 2 et HTA.",
+            "Père: Décédé à 65 ans d'un infarctus du myocarde.",
+            "Frère: En bonne santé connue."
+        ],
+        "groupageSanguin": {
+            "groupeABO": "A",
+            "rhesus": "Positif",
+            "kell": "Négatif (K-)"
+        },
+        "rechercheAnticorps": "Résultats négatifs. Aucune présence d'anticorps irréguliers."
+    },
 ]
