@@ -215,7 +215,7 @@
         },
         "rechercheAnticorps": "Présence d'anticorps anti-Jka."
     },
-        {
+    {
         "id": "patient6",
         "nom": "PEREZ",
         "prenom": "Antonio",
@@ -243,13 +243,12 @@
             "Fracture du poignet gauche (2005)."
         ],
         "traitements": [
-            "Ramipril 5mg (1x/jour, matin)",
+            "Loxen 20mg (1x/jour, matin)",
             "Paracétamol 1000mg (si douleur ou fièvre, max 3x/jour)"
         ],
         "antecedentsFamiliaux": [
             "Mère: Diabète de type 2 et HTA.",
-            "Père: Décédé à 65 ans d'un infarctus du myocarde.",
-            "Frère: En bonne santé connue."
+            "Père: Rien de particulier",
         ],
         "groupageSanguin": {
             "groupeABO": "A",
