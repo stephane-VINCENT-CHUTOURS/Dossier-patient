@@ -18,10 +18,10 @@ function openTab(evt, tabName) {
     evt.currentTarget.className += " active";
 }
 
-// Fonction pour calculer l'âge à partir de la date de naissance
+// Fonction pour calculer l'âge à partir de la date de naissance (VERSION ULTRA-FIABLE)
 function calculateAge(dobString) {
-    const [day, month, year] = dobString.split('/').map(Number);
-    const dob = new Date(year, month - 1, day);
+    const parts = dobString.split('/');
+    const dob = new Date(parseInt(parts[2]), parseInt(parts[1]) - 1, parseInt(parts[0]));
     const today = new Date();
     let age = today.getFullYear() - dob.getFullYear();
     const m = today.getMonth() - dob.getMonth();
@@ -268,4 +268,95 @@ function updatePatientInfo(data) {
     document.getElementById('fullNomPatient').textContent = data.nom || "N/A";
     document.getElementById('fullPrenomPatient').textContent = data.prenom || "N/A";
     document.getElementById('fullDobPatient').textContent = data.dob || "N/A";
-    document.getElementById('fullAgePatient').textContent = `${age} ans
+    document.getElementById('fullAgePatient').textContent = `${age} ans` || "N/A";
+    document.getElementById('fullSexePatient').textContent = data.sexe || "N/A";
+    document.getElementById('contactUrgenceNom').textContent = data.contactUrgence ? data.contactUrgence.nom : "N/A";
+    document.getElementById('contactUrgenceLien').textContent = data.contactUrgence ? data.contactUrgence.lien : "N/A";
+    document.getElementById('contactUrgenceTel').textContent = data.contactUrgence ? data.contactUrgence.tel : "N/A";
+
+
+    // Mise à jour des informations de l'onglet "Anamnèse"
+    document.getElementById('motifConsultation').textContent = data.motifConsultation || "Non spécifié.";
+
+    const anamneseDetails = document.getElementById('anamneseDetails');
+    anamneseDetails.innerHTML = '';
+    if (data.anamnese && data.anamnese.length > 0) {
+        data.anamnese.forEach(item => {
+            const p = document.createElement('p');
+            p.textContent = item;
+            anamneseDetails.appendChild(p);
+        });
+    } else {
+        anamneseDetails.innerHTML = '<p>Aucune information d\'anamnèse collectée.</p>';
+    }
+    
+    // MISE À JOUR DE L'ONGLET "SURVEILLANCE"
+    const vitalSignsTableBody = document.getElementById('vitalSignsTableBody');
+    vitalSignsTableBody.innerHTML = ''; // Vide le tableau existant
+    if (data.vitalSigns && data.vitalSigns.length > 0) {
+        data.vitalSigns.forEach(sign => {
+            const tr = document.createElement('tr');
+            tr.innerHTML = `
+                <td>${sign.datetime}</td>
+                <td>${sign.TA}</td>
+                <td>${sign.FC}</td>
+                <td>${sign.FR}</td>
+                <td>${sign.SpO2}</td>
+                <td>${sign.Temp}</td>
+            `;
+            vitalSignsTableBody.appendChild(tr);
+        });
+    } else {
+        vitalSignsTableBody.innerHTML = '<tr><td colspan="6">Aucune donnée de surveillance disponible.</td></tr>';
+    }
+
+
+    // Mise à jour des informations de l'onglet "Traitements & Antécédents"
+    const antecedentsList = document.getElementById('antecedentsList');
+    antecedentsList.innerHTML = '';
+    if (data.antecedents && data.antecedents.length > 0) {
+        data.antecedents.forEach(item => {
+            const li = document.createElement('li');
+            li.textContent = item;
+            antecedentsList.appendChild(li);
+        });
+    } else {
+        antecedentsList.innerHTML = '<li>Aucun antécédent connu.</li>';
+    }
+
+    const traitementsList = document.getElementById('traitementsList');
+    traitementsList.innerHTML = '';
+    if (data.traitements && data.traitements.length > 0) {
+        data.traitements.forEach(item => {
+            const li = document.createElement('li');
+            li.textContent = item;
+            traitementsList.appendChild(li);
+        });
+    } else {
+        traitementsList.innerHTML = '<li>Aucun traitement en cours.</li>';
+    }
+
+    const antecedentsFamiliauxList = document.getElementById('antecedentsFamiliauxList');
+    antecedentsFamiliauxList.innerHTML = '';
+    if (data.antecedentsFamiliaux && data.antecedentsFamiliaux.length > 0) {
+        data.antecedentsFamiliaux.forEach(item => {
+            const li = document.createElement('li');
+            li.textContent = item;
+            antecedentsFamiliauxList.appendChild(li);
+        });
+    } else {
+        antecedentsFamiliauxList.innerHTML = '<li>Aucun antécédent familial significatif.</li>';
+    }
+
+    // Réinitialise les zones de texte pour les transmissions et diagnoses
+    document.getElementById('studentTransmissions').value = '';
+    document.getElementById('studentDiagnoses').value = '';
+
+    // Mettre à jour le nom du patient dans les titres de chaque onglet
+    const tabPatientNameElements = document.querySelectorAll('.tab-patient-name');
+    tabPatientNameElements.forEach(element => {
+        element.textContent = `${data.prenom} ${data.nom}`;
+    });
+    
+    // MISE À JOUR DU NOUVEL ONGLET "DOSSIER TRANSFUSIONNEL"
+    document.getElementById('groupeABO').textContent = data.groupageSanguin ? data.groupageSanguin.groupeABO : "Non spécifié.";
