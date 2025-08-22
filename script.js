@@ -205,23 +205,61 @@ function displayCurrentDate() {
 
 
 // --- NOUVELLE LOGIQUE D'INITIALISATION ---
-// Le script récupère les données du fichier JSON, puis initialise la page
-displayCurrentDate();
+// Les données sont directement dans le JS, plus besoin de fetch/patients.json
 
-fetch('patients.json')
-    .then(response => {
-        if (!response.ok) {
-            throw new Error(`Erreur de chargement du fichier: ${response.status}`);
-        }
-        return response.json();
-    })
-    .then(patients => {
-        generatePatientList(patients);
-        if (patients.length > 0) {
-            loadPatient(patients, patients[0].id);
-        }
-    })
-    .catch(error => {
-        console.error("Impossible de charger les données des patients:", error);
-        document.getElementById('patientList').innerHTML = '<li>Impossible de charger la liste des patients.</li>';
-    });
+const patients = [
+    {
+        "id": "patient1",
+        "nom": "DUPONT",
+        "prenom": "Marie",
+        "dob": "01/01/1975",
+        "sexe": "Féminin",
+        "allergies": "Pénicilline (urticaire)",
+        "contactUrgence": {
+            "nom": "Jean DUPONT",
+            "lien": "Conjoint",
+            "tel": "06 12 34 56 78"
+        },
+        "motifConsultation": "Douleur abdominale aiguë et fièvre.",
+        "anamnese": [
+            "Début de la douleur il y a 6 heures, progressive, localisée en fosse iliaque droite.",
+            "Douleur évaluée à 7/10 sur l'échelle numérique, type crampe intermittente.",
+            "Fièvre 38.5°C au coucher, avec frissons.",
+            "Nausées présentes depuis 4 heures, sans vomissements.",
+            "Absence de transit intestinal depuis 24h (gaz et selles)."
+        ],
+        "vitalSigns": [
+            { "datetime": "22/08/2025 - 10h00", "TA": "130/80", "FC": "95", "FR": "18", "SpO2": "98", "Temp": "38.5" },
+            { "datetime": "22/08/2025 - 12h00", "TA": "125/75", "FC": "92", "FR": "17", "SpO2": "99", "Temp": "38.1" },
+            { "datetime": "22/08/2025 - 14h00", "TA": "128/78", "FC": "90", "FR": "18", "SpO2": "98", "Temp": "37.9" }
+        ],
+        "antecedents": [
+            "Hypertension artérielle (depuis 2010), traitée par un inhibiteur de l'enzyme de conversion.",
+            "Appendicectomie (1990) sans complications.",
+            "Fracture du poignet gauche (2005)."
+        ],
+        "traitements": [
+            "Ramipril 5mg (1x/jour, matin)",
+            "Paracétamol 1000mg (si douleur ou fièvre, max 3x/jour)"
+        ],
+        "antecedentsFamiliaux": [
+            "Mère: Diabète de type 2 et HTA.",
+            "Père: Décédé à 65 ans d'un infarctus du myocarde.",
+            "Frère: En bonne santé connue."
+        ],
+        "groupageSanguin": {
+            "groupeABO": "A",
+            "rhesus": "Positif",
+            "kell": "Négatif (K-)"
+        },
+        "rechercheAnticorps": "Résultats négatifs. Aucune présence d'anticorps irréguliers."
+    },
+    // ... (copie le reste de tes patients ici)
+];
+
+// Initialisation de la page
+displayCurrentDate();
+generatePatientList(patients);
+if (patients.length > 0) {
+    loadPatient(patients, patients[0].id);
+}
