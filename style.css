@@ -124,14 +124,12 @@ aside h2 {
     transition: all 0.3s ease;
 }
 
-.tab-button:hover {
-    color: #007bff;
-}
-
+.tab-button:hover,
 .tab-button.active {
-    color: #007bff;
-    border-bottom: 2px solid #007bff;
-    font-weight: bold;
+    background-color: #007bff;
+    color: white;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    border-bottom: 2px solid transparent;
 }
 
 /* Tab Content */
@@ -247,3 +245,4 @@ tr:nth-child(even) {
 tr:hover {
     background-color: #ddd;
 }
+
