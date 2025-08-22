@@ -3,125 +3,149 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dossier Patient Informatisé - Cas Simulé</title>
+    <title>Dossier Patient - Établissement de Santé</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+
     <header>
-        <h1>Dossier Patient Informatisé</h1>
-        <p>Cas clinique simulé pour étudiants infirmiers</p>
-        <p class="current-date">Date du jour : <span id="currentDate"></span></p>
+        <div class="header-left">
+            <h1 id="title">Dossier Patient</h1>
+            <span id="currentDate"></span>
+        </div>
+        <div class="header-right">
+            <div id="patientCard">
+                <p>Patient : <span id="prenomPatient"></span> <span id="nomPatient"></span></p>
+                <p>Né(e) le : <span id="dobPatient"></span> (<span id="agePatient"></span>)</p>
+                <p>Sexe : <span id="sexePatient"></span></p>
+                <p>Allergies : <span id="allergiesInfo"></span></p>
+            </div>
+        </div>
     </header>
 
-    <div class="container">
-        <aside class="patient-list-sidebar">
-            <h2>Liste des Patients</h2>
+    <main>
+        <aside id="patientListContainer">
+            <h2>Liste des patients</h2>
             <ul id="patientList">
                 </ul>
         </aside>
 
-        <main class="patient-details-main">
-            <div class="patient-card">
-                <h2>Patient: <span id="prenomPatient"></span> <span id="nomPatient"></span></h2>
-                <p><strong>Date de naissance:</strong> <span id="dobPatient"></span> (Âge: <span id="agePatient"></span>) | <strong>Sexe:</strong> <span id="sexePatient"></span></p>
-                <p><strong>Allergies:</strong> <span id="allergiesInfo"></span></p>
-            </div>
+        <section id="mainContent">
 
-            <div class="tab-buttons">
-                <button class="tab-button active" onclick="openTab(event, 'InfosPatient')">Patient</button>
-                <button class="tab-button" onclick="openTab(event, 'Anamnese')">Histoire de la maladie</button>
-                <button class="tab-button" onclick="openTab(event, 'TraitementsAntecedents')">Traitements & Antécédents</button>
-                <button class="tab-button" onclick="openTab(event, 'TransmissionsDiagnoses')">Transmissions & Diagnoses</button>
-                 <button class="tab-button" onclick="openTab(event, 'DossierTransfusionnel')">Dossier transfusionnel</button>
-            </div>
+            <div class="tabs">
+                <div id="tabButtons">
+                    <button class="tab-button" onclick="openTab(event, 'infoPatient')">Patient</button>
+                    <button class="tab-button" onclick="openTab(event, 'anamnese')">Anamnèse</button>
+                    <button class="tab-button" onclick="openTab(event, 'surveillance')">Paramètres Vitaux</button>
+                    <button class="tab-button" onclick="openTab(event, 'antecedents')">Antécédents & Traitements</button>
+                    <button class="tab-button" onclick="openTab(event, 'dossierTransfusionnel')">Dossier Transfusionnel</button>
+                    <button class="tab-button" onclick="openTab(event, 'transmissions')">Transmissions & Diagnoses</button>
+                </div>
 
-            <div id="InfosPatient" class="tab-content active">
-                <h3>Informations Générales (<span class="tab-patient-name"></span>)</h3>
-                <div class="info-box">
-                    <h4>Identité complète</h4>
-                    <p><strong>Nom:</strong> <span id="fullNomPatient"></span></p>
-                    <p><strong>Prénom:</strong> <span id="fullPrenomPatient"></span></p>
-                    <p><strong>Date de naissance:</strong> <span id="fullDobPatient"></span></p>
-                    <p><strong>Âge:</strong> <span id="fullAgePatient"></span></p>
-                    <p><strong>Sexe:</strong> <span id="fullSexePatient"></span></p>
+                <div id="infoPatient" class="tab-content">
+                    <h2 class="tab-title">Informations sur <span class="tab-patient-name"></span></h2>
+                    <div class="patient-details-grid">
+                        <div class="card">
+                            <h3>Détails du patient</h3>
+                            <p>Nom : <span id="fullNomPatient"></span></p>
+                            <p>Prénom : <span id="fullPrenomPatient"></span></p>
+                            <p>Date de naissance : <span id="fullDobPatient"></span></p>
+                            <p>Âge : <span id="fullAgePatient"></span></p>
+                            <p>Sexe : <span id="fullSexePatient"></span></p>
+                        </div>
+                        <div class="card">
+                            <h3>Contact d'urgence</h3>
+                            <p>Nom : <span id="contactUrgenceNom"></span></p>
+                            <p>Lien : <span id="contactUrgenceLien"></span></p>
+                            <p>Téléphone : <span id="contactUrgenceTel"></span></p>
+                        </div>
+                    </div>
                 </div>
-                <div class="info-box">
-                    <h4>Contact d'urgence</h4>
-                    <p><strong>Nom:</strong> <span id="contactUrgenceNom"></span></p>
-                    <p><strong>Lien:</strong> <span id="contactUrgenceLien"></span></p>
-                    <p><strong>Téléphone:</strong> <span id="contactUrgenceTel"></span></p>
-                </div>
-                <div class="info-box" id="externalLinksBox">
-                    <h4>Ressources complémentaires</h4>
-                    <ul id="externalLinksList">
-                        </ul>
-                </div>
-            </div>
 
-            <div id="Anamnese" class="tab-content">
-                <h3>Histoire de la maladie et examen clinique (<span class="tab-patient-name"></span>)</h3>
-                <div class="info-box">
-                    <h4>Motif de consultation</h4>
-                    <p id="motifConsultation"></p>
+                <div id="anamnese" class="tab-content">
+                    <h2 class="tab-title">Anamnèse & Constantes de <span class="tab-patient-name"></span></h2>
+                    <div class="card">
+                        <h3>Motif de consultation</h3>
+                        <p id="motifConsultation"></p>
+                    </div>
+                    <div class="card">
+                        <h3>Anamnèse détaillée</h3>
+                        <div id="anamneseDetails"></div>
+                    </div>
                 </div>
-                <div class="info-box">
-                    <h4>Anamnèse détaillée</h4>
-                    <div id="anamneseDetails"></div>
-                </div>
-                 <div class="info-box">
-                    <h4>Constantes et signes vitaux</h4>
-                    <div id="constantes"></div>
-                </div>
-            </div>
-
-            <div id="TraitementsAntecedents" class="tab-content">
-                <h3>Traitements & Antécédents (<span class="tab-patient-name"></span>)</h3>
-                <div class="info-box">
-                    <h4>Antécédents médicaux et chirurgicaux</h4>
-                    <ul id="antecedentsList"></ul>
-                </div>
-                <div class="info-box">
-                    <h4>Traitements en cours</h4>
-                    <ul id="traitementsList"></ul>
-                </div>
-                <div class="info-box">
-                    <h4>Antécédents familiaux</h4>
-                    <ul id="antecedentsFamiliauxList"></ul>
-                </div>
-            </div>
-
-            <div id="TransmissionsDiagnoses" class="tab-content">
-                <h3>Transmissions ciblées & Diagnoses infirmières (<span class="tab-patient-name"></span>)</h3>
-                <div class="info-box">
-                    <h4>Transmissions (à compléter par l'étudiant)</h4>
-                    <textarea id="studentTransmissions" rows="8" placeholder="Saisissez ici vos transmissions ciblées (D-E-R) ou autres notes..."></textarea>
-                </div>
-                <div class="info-box">
-                    <h4>Diagnoses infirmières (à compléter par l'étudiant)</h4>
-                    <textarea id="studentDiagnoses" rows="8" placeholder="Saisissez ici les diagnoses infirmières pertinentes (PES)..."></textarea>
-                </div>
-                <button onclick="saveStudentNotes()">Enregistrer les notes et diagnoses</button>
                 
-            <div id="Dossier transfusionnel" class="tab-content">
-                <h3>Dossier transfusionnel (<span class="tab-patient-name"></span>)</h3>
-                <div class="info-box">
-                    <h4>Carte de groupage sanguin</h4>
+                <div id="surveillance" class="tab-content">
+                    <h2 class="tab-title">Surveillance des paramètres vitaux de <span class="tab-patient-name"></span></h2>
+                    <div class="card">
+                        <h3>Tableau de surveillance</h3>
+                        <table id="vitalSignsTable">
+                            <thead>
+                                <tr>
+                                    <th>Date & Heure</th>
+                                    <th>TA (mmHg)</th>
+                                    <th>FC (bpm)</th>
+                                    <th>FR (/min)</th>
+                                    <th>SpO2 (%)</th>
+                                    <th>Temp (°C)</th>
+                                </tr>
+                            </thead>
+                            <tbody id="vitalSignsTableBody">
+                                </tbody>
+                        </table>
+                    </div>
                 </div>
-                <div class="info-box">
-                    <h4>Résultats RAI</h4>
-                </div>
-                <button onclick="saveStudentNotes()">Enregistrer les notes et diagnoses</button>
-            </div>
-            </div>
-        </main>
-    </div>
 
-    <footer>
-        <p>&copy; 2025 Votre Établissement de Formation</p>
-    </footer>
+                <div id="antecedents" class="tab-content">
+                    <h2 class="tab-title">Antécédents & Traitements de <span class="tab-patient-name"></span></h2>
+                    <div class="card">
+                        <h3>Antécédents médicaux et chirurgicaux</h3>
+                        <ul id="antecedentsList"></ul>
+                    </div>
+                    <div class="card">
+                        <h3>Traitements en cours</h3>
+                        <ul id="traitementsList"></ul>
+                    </div>
+                    <div class="card">
+                        <h3>Antécédents familiaux</h3>
+                        <ul id="antecedentsFamiliauxList"></ul>
+                    </div>
+                </div>
+
+                <div id="dossierTransfusionnel" class="tab-content">
+                    <h2 class="tab-title">Dossier Transfusionnel de <span class="tab-patient-name"></span></h2>
+                    <div class="card">
+                        <h3>Groupage Sanguin</h3>
+                        <p><strong>Groupe ABO:</strong> <span id="groupeABO"></span></p>
+                        <p><strong>Rhésus:</strong> <span id="rhesusSanguin"></span></p>
+                        <p><strong>Kell:</strong> <span id="kellFactor"></span></p>
+                    </div>
+                    <div class="card">
+                        <h3>Recherche d'Anticorps Irréguliers (RAI)</h3>
+                        <p id="rechercheAnticorps"></p>
+                    </div>
+                </div>
+
+                <div id="transmissions" class="tab-content">
+                    <h2 class="tab-title">Notes et Diagnoses Infirmières</h2>
+                    <div class="card">
+                        <h3>Transmissions Infirmières</h3>
+                        <textarea id="studentTransmissions" placeholder="Saisissez vos observations et transmissions..."></textarea>
+                    </div>
+                    <div class="card">
+                        <h3>Diagnoses Infirmières</h3>
+                        <textarea id="studentDiagnoses" placeholder="Saisissez vos diagnoses infirmières..."></textarea>
+                    </div>
+                    <div class="button-container">
+                        <button onclick="saveStudentNotes()">Enregistrer les notes et diagnoses</button>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+    </main>
 
     <script src="script.js"></script>
+
 </body>
-
 </html>
-
