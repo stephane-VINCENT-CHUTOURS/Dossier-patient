@@ -176,7 +176,6 @@ function loadPatient(patients, patientId) {
 
         // Active le premier onglet ('InfosPatient') après le chargement du patient
         // Simule un clic sur le premier bouton pour activer l'onglet visuellement
-        document.querySelector('.tab-button').click();
     } else {
         console.error("Patient non trouvé avec l'ID:", patientId);
     }
@@ -474,4 +473,5 @@ generatePatientList(patients);
 if (patients.length > 0) {
     loadPatient(patients, patients[0].id);
 }
+
 
