@@ -1,0 +1,275 @@
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    margin: 0;
+    padding: 20px;
+    background-color: #f4f7f6;
+    color: #333;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+header {
+    background-color: #007bff;
+    color: white;
+    padding: 15px;
+    text-align: center;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+.current-date {
+    font-size: 0.9em;
+    color: white;
+    margin-top: 10px;
+}
+
+h1, h2, h3, h4 {
+    color: #0056b3;
+    margin-top: 0;
+    margin-bottom: 10px;
+}
+
+/* Nouveau style pour le conteneur principal (sidebar + main content) */
+.container {
+    display: flex;
+    flex-grow: 1;
+    max-width: 1800px; /* Augmenter la largeur pour la sidebar */
+    margin: 0 auto;
+    background-color: white; /* Le fond blanc englobe tout */
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+    overflow: hidden; /* Pour gérer les bords arrondis */
+}
+
+/* Styles de la barre latérale des patients */
+.patient-list-sidebar {
+    width: 350px; /* Largeur de la sidebar */
+    background-color: #e9f5ff; /* Couleur de fond légèrement différente */
+    padding: 20px;
+    border-right: 2px solid #cce5ff;
+    overflow-y: auto; /* Permet le défilement si beaucoup de patients */
+}
+
+.patient-list-sidebar h2 {
+    color: #0056b3;
+    margin-bottom: 15px;
+    font-size: 1.3em;
+}
+
+#patientList {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+#patientList li {
+    padding: 10px 15px;
+    margin-bottom: 8px;
+    background-color: #f0f7ff;
+    border: 1px solid #d0e8ff;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.2s, box-shadow 0.2s;
+    font-weight: bold;
+    color: #333;
+}
+
+#patientList li:hover {
+    background-color: #dbeaff;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+#patientList li.active {
+    background-color: #007bff;
+    color: white;
+    border-color: #0056b3;
+}
+
+
+/* Style de la section principale des détails du patient */
+.patient-details-main {
+    flex-grow: 1; /* Prend l'espace restant */
+    padding: 25px;
+}
+
+
+/* Style de la carte patient en haut */
+.patient-card {
+    background-color: #e9f5ff;
+    border: 1px solid #cce5ff;
+    padding: 15px;
+    border-radius: 6px;
+    margin-bottom: 25px;
+}
+.patient-card h2 {
+    color: #0056b3;
+    margin-top: 5px;
+    margin-bottom: 10px;
+}
+.patient-card p {
+    margin-bottom: 5px;
+}
+.patient-card strong {
+    color: #004085;
+}
+
+
+/* Styles des boutons d'onglet */
+.tab-buttons {
+    display: flex;
+    margin-bottom: 20px;
+    border-bottom: 2px solid #ddd;
+    overflow-x: auto;
+}
+
+.tab-button {
+    background-color: #f0f0f0;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    padding: 12px 20px;
+    transition: background-color 0.3s, color 0.3s;
+    font-size: 16px;
+    border-radius: 8px 8px 0 0;
+    margin-right: 5px;
+    white-space: nowrap;
+}
+
+.tab-button:hover {
+    background-color: #e2e2e2;
+    color: #0056b3;
+}
+
+.tab-button.active {
+    background-color: #007bff;
+    color: white;
+    border-bottom: 2px solid #007bff;
+}
+
+/* Styles du contenu des onglets */
+.tab-content {
+    display: none;
+    padding: 20px 0;
+    border-top: none;
+}
+
+.tab-content.active {
+    display: block;
+}
+
+/* Styles des encadrés d'information */
+.info-box {
+    background-color: #fafafa;
+    border: 1px solid #e0e0e0;
+    border-left: 5px solid #007bff;
+    padding: 15px 20px;
+    border-radius: 6px;
+    margin-bottom: 20px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+}
+
+.info-box h4 {
+    color: #0056b3;
+    margin-top: 0;
+    margin-bottom: 10px;
+    font-size: 1.1em;
+}
+
+/* Styles pour les listes dans les encadrés */
+.info-box ul {
+    list-style: none;
+    padding-left: 0;
+}
+
+.info-box ul li {
+    margin-bottom: 5px;
+    padding-left: 20px;
+    position: relative;
+}
+
+.info-box ul li:before {
+    content: "•";
+    color: #007bff;
+    position: absolute;
+    left: 0;
+    top: 0;
+}
+
+.info-box ul li a {
+    color: #007bff; /* Couleur des liens */
+    text-decoration: none; /* Enlève le soulignement par défaut */
+}
+
+.info-box ul li a:hover {
+    text-decoration: underline; /* Souligne au survol */
+}
+
+.tab-patient-name {
+    color: #800080;
+    font-weight: bold;
+}
+
+
+textarea {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-top: 10px;
+    resize: vertical;
+    font-size: 1em;
+    box-sizing: border-box;
+}
+
+button {
+    background-color: #000080;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 15px;
+    font-size: 1em;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #0000ff ;
+}
+
+footer {
+    text-align: center;
+    margin-top: 30px;
+    padding: 15px;
+    color: #666;
+    font-size: 0.9em;
+    border-top: 1px solid #eee;
+}
+/* ... (votre CSS existant) ... */
+
+#externalLinksBox button {
+    background-color: #007bff; /* Bleu des entêtes */
+    color: white;
+    padding: 8px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 0.9em;
+    margin-bottom: 8px; /* Espacement entre les boutons */
+    width: auto; /* Permet au bouton de s'adapter au texte */
+    display: block; /* Pour que chaque bouton soit sur une nouvelle ligne */
+    text-align: left; /* Aligne le texte du bouton à gauche */
+    transition: background-color 0.2s ease;
+}
+
+#externalLinksBox button:hover {
+    background-color: #0056b3; /* Bleu plus foncé au survol */
+}
+
+/* Vous pouvez aussi masquer les puces de la liste si vous n'en voulez plus avec les boutons */
+#externalLinksList li:before {
+    content: none; /* Supprime la puce */
+}
