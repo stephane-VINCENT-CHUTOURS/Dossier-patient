@@ -129,7 +129,7 @@ aside h2 {
     background-color: #007bff;
     color: white;
     box-shadow: 0 2px 5px rgba(0,0,0,0.2);
-    border-bottom: 2px solid transparent;
+    border-bottom: 2px solid;
 }
 
 /* Tab Content */
@@ -245,4 +245,5 @@ tr:nth-child(even) {
 tr:hover {
     background-color: #ddd;
 }
+
 
